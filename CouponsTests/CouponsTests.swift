@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Coupons
+//@testable import Coupons
 
 class CouponsTests: XCTestCase {
 
