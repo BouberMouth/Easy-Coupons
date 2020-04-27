@@ -35,9 +35,16 @@ class UserNotificationsService {
 
             let notificationDate = expirationDate.addingTimeInterval(-86400)
             var components = Calendar.current.dateComponents([.year, .month, .day], from: notificationDate)
-            components.hour = 20
-            components.minute = 15
-
+            
+            if let preferredTime = UserDefaults.standard.object(forKey: UserDefaultsKeys.notificationTimePreferenceKey) as? Date {
+                let comp = Calendar.current.dateComponents([.hour, .minute], from: preferredTime)
+                components.hour = comp.hour ?? 20
+                components.minute = comp.minute ?? 15
+            } else {
+                components.hour = 1
+                components.minute = 15
+            }
+            
             let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
 
             let request = UNNotificationRequest(identifier: "COUPON\(coupon.id)", content: content, trigger: trigger)
@@ -47,6 +54,13 @@ class UserNotificationsService {
                     requestError = error
                 }
             }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, MMM d, yyyy HH:mm"
+            let date = Calendar.current.date(from: components)
+            let dform = dateFormatter.string(from: date!)
+            
+            print("NOTIFICATION WILL BE SENT ON \(dform)")
         }
         
         closure(authorized, authorizationError, requestError)

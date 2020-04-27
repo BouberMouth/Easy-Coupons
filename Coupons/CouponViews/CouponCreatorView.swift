@@ -215,7 +215,7 @@ extension CouponCreatorView {
         coupon.offerType = OfferType.init(rawValue: self.offerType)!
         coupon.offerValue = NSNumber(value: Double(self.offerStringValue) ?? 0.0)
         coupon.image = self.image?.pngData() as NSData?
-        coupon.imageRotation = self.sourceType == .camera ? 90 : 0
+        coupon.imageRotation = self.image != nil ? (self.sourceType == .camera ? 90 : 0) : 0
         
         do {
             try self.moc.save()

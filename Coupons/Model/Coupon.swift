@@ -40,44 +40,7 @@ public class Coupon: NSManagedObject, Identifiable {
             return "\(leftPart)€\(rightPart)"
         }
     }
-    
-    
-//    static func newCoupon(context: NSManagedObjectContext,
-//                          brand: String,
-//                          location: String? = nil,
-//                          expirationDate: Date? = nil,
-//                          minimumAmount: String? = nil,
-//                          offerValue: Double,
-//                          offerType: OfferType) -> Bool {
-//
-//        print("""
-//            CONTEXT: \(context)
-//            BRAND: \(brand)
-//            LOCATION: \(location)
-//            EXPIRATION: \(expirationDate)
-//            MIN: \(minimumAmount)
-//            OFFER \(offerValue) \(offerType == .percentage ? "%" : "€")
-//            """)
-//
-//        let newCoupon = Coupon(context: context)
-//        newCoupon.id = Coupon.getNewUniqueCouponID()
-//        newCoupon.brand = brand
-//        newCoupon.location = location
-//        newCoupon.expirationDate = expirationDate
-//        if let minAmount = minimumAmount, let doubleMinimumAmount = Double(minAmount) {
-//            newCoupon.minimumAmount = NSNumber(value: doubleMinimumAmount)
-//        }
-//        newCoupon.offerValue = NSNumber(value: offerValue)
-//        newCoupon.offerType = offerType
-//
-//        do {
-//            try context.save()
-//        } catch {
-//            print(error)
-//            return false
-//        }
-//        return true
-//    }
+
     
     static func getNewUniqueCouponID() -> NSNumber {
         let uniqueID = UserDefaults.standard.integer(forKey: UserDefaultsKeys.uniqueCouponIdentifierKey)
@@ -105,13 +68,4 @@ enum CouponOffer {
     case value(Double)
 }
 
-extension Double {
-    func priceComponants() -> (String, String) {
-        let wholeValue = Int(self)
-        let decimalValue = Int(self * 100) - (wholeValue * 100)
-        if decimalValue < 10 {
-            return (String(wholeValue), "\(0)\(String(decimalValue))")
-        }
-        return (String(wholeValue), String(decimalValue))
-    }
-}
+

@@ -15,22 +15,6 @@ struct CouponDetails: View {
     var coupon: Coupon
     @State var showEditionView: Bool = false
     
-//    var editor: CouponEditorView {
-//        let cev = CouponEditorView(coupon: coupon)
-//        cev.brand = coupon.brand
-//        cev.location = coupon.location ?? ""
-//        cev.offerStringValue = coupon.offerValue.stringValue
-//        cev.offerType = coupon.offerTypeRV.intValue
-//        cev.minimumAmount = coupon.minimumAmount?.stringValue ?? ""
-//        cev.expirationDate = coupon.expirationDate ?? Date()
-//        if let imageData = coupon.image {
-//            cev.image = UIImage(data: imageData as Data)
-//        }
-//        cev.hasMinimumAmount = coupon.minimumAmount != nil
-//        cev.hasExpirationDate = coupon.expirationDate != nil
-//        return cev
-//    }
-    
     var value: String {
         switch coupon.offerType {
         case .percentage:
@@ -73,7 +57,7 @@ struct CouponDetails: View {
     }
     
     var image: Image {
-        if let data = coupon.image as? Data, let uiImage = UIImage(data: data) {
+        if let data = coupon.image as? Data, let uiImage = UIImage(data: data)//?.rotate(radians: .pi/2) {
             return Image(uiImage: uiImage)
         }
         return Image("Logo2")
@@ -90,9 +74,16 @@ struct CouponDetails: View {
         ScrollView(.vertical) {
             image
                 .resizable()
-                .cornerRadius(10)
+                
+                .clipShape(RoundedRectangle(cornerRadius: 10))
                 .aspectRatio(contentMode: .fit)
-                .padding(.bottom, 20)
+                .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.orange, lineWidth: 4))
+                .padding(20)
+//
+//
+//
+//                .padding(.bottom, 20)
                 
             HStack {
                 Text("Brand")
@@ -166,6 +157,7 @@ struct CouponDetails: View {
     
     init(coupon: Coupon) {
         UIScrollView.appearance().showsVerticalScrollIndicator = false
+        UIImageView.appearance()
         self.coupon = coupon
     }
 }

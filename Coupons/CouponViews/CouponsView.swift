@@ -14,17 +14,11 @@ struct CouponsView: View {
     
     @State var showCreator = false
     
-    init() {
-        UITableView.appearance().separatorColor = .clear
-        UITableViewCell.appearance().selectionStyle = .none
-        UITableViewCell.appearance().accessoryType = .none
-        UITableView.appearance().showsVerticalScrollIndicator = false
-    }
+
     
     var body: some View {
         NavigationView {
             List {
-                
                 ForEach(coupons) {coupon in
                     ZStack {
                         NavigationLink(destination: CouponDetails(coupon: coupon).environment(\.managedObjectContext, self.moc)) {
@@ -59,6 +53,13 @@ struct CouponsView: View {
             .padding(.top)
             .background(Color(UIColor.systemBackground))
             .navigationBarTitle("Coupons")
+        }.onAppear {
+            UITableViewCell.appearance().backgroundColor = .systemBackground
+            UITableView.appearance().backgroundColor = .systemBackground
+            UITableView.appearance().separatorColor = .clear
+            UITableViewCell.appearance().selectionStyle = .none
+            UITableViewCell.appearance().accessoryType = .none
+            UITableView.appearance().showsVerticalScrollIndicator = false
         }
         
         
