@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FORMAT</key>
+	<dict>
+		<key>EXP_DATE</key>
+		<dict>
+			<key>value</key>
+			<string>MMMM d, yyyy</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>DEFAULT</key>
+	<dict>
+		<key>CANCEL</key>
+		<dict>
+			<key>value</key>
+			<string>Cancel</string>
+			<key>comment</key>
+			<string>- Default cancel -</string>
+		</dict>
+		<key>DELETE</key>
+		<dict>
+			<key>value</key>
+			<string>Delete</string>
+			<key>comment</key>
+			<string>- Default delete -</string>
+		</dict>
+		<key>OK</key>
+		<dict>
+			<key>value</key>
+			<string>Ok</string>
+			<key>comment</key>
+			<string>- Default translation Ok -</string>
+		</dict>
+		<key>EDIT</key>
+		<dict>
+			<key>value</key>
+			<string>Edit</string>
+			<key>comment</key>
+			<string>- Default translation Edit -</string>
+		</dict>
+	</dict>
+	<key>TAB_BAR_TITLE</key>
+	<dict>
+		<key>COUPONS</key>
+		<dict>
+			<key>value</key>
+			<string>Coupons</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>SETTINGS</key>
+		<dict>
+			<key>value</key>
+			<string>Settings</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>COUPON</key>
+	<dict>
+		<key>BRAND</key>
+		<dict>
+			<key>value</key>
+			<string>Brand</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>LOCATION</key>
+		<dict>
+			<key>value</key>
+			<string>Location</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>VALUE</key>
+		<dict>
+			<key>value</key>
+			<string>Value</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>MIN_AMOUNT</key>
+		<dict>
+			<key>value</key>
+			<string>Minimum amount</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>EXPIRATION</key>
+		<dict>
+			<key>value</key>
+			<string>Expiration date</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>NO_MIN</key>
+		<dict>
+			<key>value</key>
+			<string>No minimum amount</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>NEVER_EXP</key>
+		<dict>
+			<key>value</key>
+			<string>Never expires</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>EXP_DESCRIPTION</key>
+		<dict>
+			<key>TODAY</key>
+			<dict>
+				<key>value</key>
+				<string>Expires today</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>TOMORROW</key>
+			<dict>
+				<key>value</key>
+				<string>Expires tomorrow</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>IN_X_DAYS</key>
+			<dict>
+				<key>value</key>
+				<string>Expires in %n% days</string>
+				<key>comment</key>
+				<string>Description of expiration date where %n% is a placeholder for remaining days count</string>
+			</dict>
+			<key>EXPIRED</key>
+			<dict>
+				<key>value</key>
+				<string>Already expired</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>MIN_DESCRIPTION</key>
+		<dict>
+			<key>value</key>
+			<string>From %price%</string>
+			<key>comment</key>
+			<string>Description of minimum value where %price% is a placeholder for a price string.</string>
+		</dict>
+		<key>OFFER_TYPE</key>
+		<dict>
+			<key>VALUE</key>
+			<dict>
+				<key>value</key>
+				<string>Value</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>REDUCTION</key>
+			<dict>
+				<key>value</key>
+				<string>Reduction</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>CREATE_BUTTON_TITLE</key>
+		<dict>
+			<key>value</key>
+			<string>New Coupon</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>COUPON_CREATOR</key>
+	<dict>
+		<key>TITLE</key>
+		<dict>
+			<key>value</key>
+			<string>New Coupon</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>IMAGE_ALERT_TITLE</key>
+		<dict>
+			<key>value</key>
+			<string>Select an image</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>IMAGE_ALERT_MESSAGE</key>
+		<dict>
+			<key>value</key>
+			<string></string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>IMAGE_ALERT_CAMERA_OPTION</key>
+		<dict>
+			<key>value</key>
+			<string>Camera</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>IMAGE_ALERT_LIBRARY_OPTION</key>
+		<dict>
+			<key>value</key>
+			<string>Photo library</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>OFFER_HEADLINE</key>
+		<dict>
+			<key>value</key>
+			<string>Offer</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>OFFER_SUBHEADLINE</key>
+		<dict>
+			<key>value</key>
+			<string>Enter the type of the offer and its amount</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>MIN_AMOUNT_HEADLINE</key>
+		<dict>
+			<key>value</key>
+			<string>Minimum amount ?</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>MIN_AMOUNT_SUBHEADLINE</key>
+		<dict>
+			<key>value</key>
+			<string>Minimum amount (%sign%)</string>
+			<key>comment</key>
+			<string>%sign% placeholder for currency sign</string>
+		</dict>
+		<key>EXP_DATE_HEADLINE</key>
+		<dict>
+			<key>value</key>
+			<string>Expiration date ?</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>EXP_DATE_SUBHEADLINE</key>
+		<dict>
+			<key>value</key>
+			<string>When does it expire ?</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>CREATE</key>
+		<dict>
+			<key>value</key>
+			<string>Create</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+		<key>UPDATE</key>
+		<dict>
+			<key>value</key>
+			<string>Save changes</string>
+			<key>comment</key>
+			<string></string>
+		</dict>
+	</dict>
+	<key>SETTINGS</key>
+	<dict>
+		<key>CURRENCY</key>
+		<dict>
+			<key>SECTION_TITLE</key>
+			<dict>
+				<key>value</key>
+				<string>Currency</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>CURRENCY</key>
+			<dict>
+				<key>value</key>
+				<string>Currency</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>APPEARANCE</key>
+		<dict>
+			<key>SECTION_TITLE</key>
+			<dict>
+				<key>value</key>
+				<string>Appearance</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>TINT_COLOR</key>
+			<dict>
+				<key>value</key>
+				<string>Tint color</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>NOTIFICATIONS</key>
+		<dict>
+			<key>SECTION_TITLE</key>
+			<dict>
+				<key>value</key>
+				<string>Notifications</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>REMINDERS_TIME</key>
+			<dict>
+				<key>value</key>
+				<string>Reminders time</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+		</dict>
+		<key>CONTACT</key>
+		<dict>
+			<key>SECTION_TITLE</key>
+			<dict>
+				<key>value</key>
+				<string>Contact</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>CONTACT_US</key>
+			<dict>
+				<key>value</key>
+				<string>Contact us</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+		</dict>
+	</dict>
+	<key>NOTIFICATIONS</key>
+	<dict>
+		<key>1W_REMINDER</key>
+		<dict>
+			<key>TITLE</key>
+			<dict>
+				<key>value</key>
+				<string>Your coupon  expires next week !</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>BODY</key>
+			<dict>
+				<key>value</key>
+				<string>You still have one week to use your %offer% coupon at %brand% !</string>
+				<key>comment</key>
+				<string>%offer% placeholder for offer (10€, 15%) //// %brand% placeholder for store name.</string>
+			</dict>
+		</dict>
+		<key>1D_REMINDER</key>
+		<dict>
+			<key>TITLE</key>
+			<dict>
+				<key>value</key>
+				<string>Your coupon  expires tommorow !</string>
+				<key>comment</key>
+				<string></string>
+			</dict>
+			<key>BODY</key>
+			<dict>
+				<key>value</key>
+				<string>You still have one day to use your %offer% coupon at %brand% !</string>
+				<key>comment</key>
+				<string>%offer% placeholder for offer (10€, 15%) //// %brand% placeholder for store name.</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

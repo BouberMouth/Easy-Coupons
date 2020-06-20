@@ -16,6 +16,8 @@ struct CouponEditorView: View {
     @Environment(\.presentationMode) var presentation
     @ObservedObject private var keyboard = KeyboardResponder()
     
+    let sign = Currency(rawValue: (UserDefaults.standard.string(forKey: UserDefaultsKeys.currencyPreferenceKey) ?? "eur"))?.sign ?? "€"
+    
     @State private var showSheet = false
     @State private var showImagePicker = false
     @State private var sourceType: UIImagePickerController.SourceType = .camera
@@ -38,7 +40,7 @@ struct CouponEditorView: View {
             let minAmountCheck = (minimumAmountDouble != nil) || !hasMinimumAmount
             return brandCheck && offerCheck && minAmountCheck
         }
-       return false
+        return false
     }
     
     var offerDoubleValue: Double? {
@@ -56,7 +58,7 @@ struct CouponEditorView: View {
     }
     
     var offerPlaceholder: String {
-        return  offerType == 1 ? "Value" : "Reduction"
+        return  offerType == 1 ? String.localize(forKey: "COUPON.OFFER_TYPE.VALUE") : String.localize(forKey: "COUPON.OFFER_TYPE.REDUCTION")
     }
     
     @State var brand: String = "a" {didSet {print(brand)}}
@@ -73,46 +75,55 @@ struct CouponEditorView: View {
             Form {
                 HStack {
                     VStack {
-                        TextField("Name", text: $brand)
+                        TextField(String.localize(forKey: "COUPON.BRAND"), text: $brand)
                             .padding(15)
                             .background(Color(UIColor.secondarySystemBackground))
                             .cornerRadius(10)
                         
-                        TextField("Location", text: $location)
+                        TextField(String.localize(forKey: "COUPON.LOCATION"), text: $location)
                             .padding(15)
                             .background(Color(UIColor.secondarySystemBackground))
                             .cornerRadius(10)
                     }
                     
-                    Image(uiImage: (couponImage ?? UIImage(named: "Logo2")!)).resizable()
-                        .frame(minWidth: 50, maxWidth: 120, minHeight: 50, maxHeight: 120)
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            self.showSheet = true
-                    }.actionSheet(isPresented: $showSheet) {
-                        ActionSheet(title: Text("Select photo"), message: Text("Choose"), buttons: [
-                            .default(Text("Camera"), action: {
-                                self.showImagePicker = true
-                                self.sourceType = .camera
-                            }),
-                            .default(Text("Photo library"), action: {
-                                self.showImagePicker = true
-                                self.sourceType = .photoLibrary
-                            }),
-                            .cancel()
-                        ])
-                    }.sheet(isPresented: $showImagePicker) {
-                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                    if image != nil {
+                        Image(uiImage: image!).resizable()
+                            .frame(minWidth: 50, maxWidth: 120, minHeight: 50, maxHeight: 120)
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                self.showSheet = true
+                        }
+                    } else {
+                        ImagePlaceholderView(cornerRadius: 10, imageFontSize: 30)
+                            .frame(minWidth: 50, maxWidth: 120, minHeight: 50, maxHeight: 120)
+                            .onTapGesture {
+                                self.showSheet = true
+                        }
                     }
                 }
+                .actionSheet(isPresented: $showSheet) {
+                    ActionSheet(title: Text(String.localize(forKey: "COUPON_CREATOR.IMAGE_ALERT_TITLE")), message: nil, buttons: [
+                        .default(Text(String.localize(forKey: "COUPON_CREATOR.IMAGE_ALERT_CAMERA_OPTION")), action: {
+                            self.showImagePicker = true
+                            self.sourceType = .camera
+                        }),
+                        .default(Text(String.localize(forKey: "COUPON_CREATOR.IMAGE_ALERT_LIBRARY_OPTION")), action: {
+                            self.showImagePicker = true
+                            self.sourceType = .photoLibrary
+                        }),
+                        .cancel()
+                    ])
+                }.sheet(isPresented: $showImagePicker) {
+                    ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
+                }
+                
                 
                 HStack {
                     VStack(alignment: .leading) {
-                        Text("Offer")
+                        Text(String.localize(forKey: "COUPON_CREATOR.OFFER_HEADLINE"))
                             .font(.system(.headline, design: .rounded))
                             .foregroundColor(Color(UIColor.label))
-                        Text("Enter the type of offer and the amount")
+                        Text(String.localize(forKey: "COUPON_CREATOR.OFFER_SUBHEADLINE"))
                             .font(.system(.subheadline, design: .rounded))
                             .foregroundColor(Color(UIColor.secondaryLabel))
                     }
@@ -127,7 +138,7 @@ struct CouponEditorView: View {
                         .keyboardType(.decimalPad)
                     Picker(selection: $offerType, label: Text("")) {
                         Text("%").tag(0)
-                        Text("€").tag(1)
+                        Text(sign).tag(1)
                     }
                     .padding(15)
                     .frame(width: 70)
@@ -137,33 +148,33 @@ struct CouponEditorView: View {
                 
                 
                 Toggle(isOn: $hasMinimumAmount) {
-                    Text("Minimum amount")
-                    .font(.system(.headline, design: .rounded))
-                    .foregroundColor(Color(UIColor.label))
+                    Text(String.localize(forKey: "COUPON_CREATOR.MIN_AMOUNT_HEADLINE"))
+                        .font(.system(.headline, design: .rounded))
+                        .foregroundColor(Color(UIColor.label))
                 }
                 
                 if hasMinimumAmount {
-                    TextField("Minimum amount (€)", text: $minimumAmount)
-                    .padding(15)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(10)
-                    .keyboardType(.decimalPad)
+                    TextField(String.localize(forKey: "COUPON_CREATOR.MIN_AMOUNT_SUBHEADLINE").replacingOccurrences(of: "%sign%", with: sign), text: $minimumAmount)
+                        .padding(15)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(10)
+                        .keyboardType(.decimalPad)
                 }
                 
                 Toggle(isOn: $hasExpirationDate) {
-                    Text("Expiration date")
-                    .font(.system(.headline, design: .rounded))
-                    .foregroundColor(Color(UIColor.label))
+                    Text(String.localize(forKey: "COUPON_CREATOR.EXP_DATE_HEADLINE"))
+                        .font(.system(.headline, design: .rounded))
+                        .foregroundColor(Color(UIColor.label))
                 }
                 
                 if hasExpirationDate {
                     DatePicker(selection: $expirationDate, in: dateClosedRange, displayedComponents: [.date]) {
-                        Text("When does it expire ?")
-                        .font(.system(.subheadline, design: .rounded))
-                        .foregroundColor(Color(UIColor.secondaryLabel))
+                        Text(String.localize(forKey: "COUPON_CREATOR.EXP_DATE_SUBHEADLINE"))
+                            .font(.system(.subheadline, design: .rounded))
+                            .foregroundColor(Color(UIColor.secondaryLabel))
                     }.padding(15)
-                    .background(Color(UIColor.secondarySystemBackground))
-                    .cornerRadius(10)
+                        .background(Color(UIColor.secondarySystemBackground))
+                        .cornerRadius(10)
                 }
                 
                 Button(action: {
@@ -171,27 +182,27 @@ struct CouponEditorView: View {
                         self.add()
                     }
                 }, label: {
-                    Text("Save changes")
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundColor(Color(UIColor.white))
+                    Text(String.localize(forKey: "COUPON_CREATOR.UPDATE"))
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundColor(Color(UIColor.white))
                 })
-                .frame(maxWidth: .infinity)
-                .padding(15)
-                .background(self.canCreate ? Color(UIColor.systemPink) : Color.gray)
-                .cornerRadius(10)
-                .padding(.top, 50)
+                    .frame(maxWidth: .infinity)
+                    .padding(15)
+                    .background(self.canCreate ? Color(TintColor.userPreference) : Color.gray)
+                    .cornerRadius(10)
+                    .padding(.top, 15)
                     .padding(.bottom, 0)
                 
                 
                 
-                }.customEditorStyle()
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            .padding(.bottom, keyboard.currentHeight)
+            }.customEditorStyle()
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .padding(.bottom, keyboard.currentHeight)
                 
-            .navigationBarTitle("New Coupon")
-            .navigationBarItems(leading: Button("Cancel") {
-                self.presentation.wrappedValue.dismiss()
-            })
+                .navigationBarTitle(String.localize(forKey: "COUPON_CREATOR.TITLE"))
+                .navigationBarItems(leading: Button(String.localize(forKey: "DEFAULT.CANCEL")) {
+                    self.presentation.wrappedValue.dismiss()
+                })
         }
         
         
@@ -207,13 +218,26 @@ extension CouponEditorView {
         coupon.minimumAmount = self.hasMinimumAmount ? NSNumber(value: Double(self.minimumAmount) ?? 0.0) : nil
         coupon.offerType = OfferType.init(rawValue: self.offerType)!
         coupon.offerValue = NSNumber(value: Double(self.offerStringValue) ?? 0.0)
-        coupon.image = self.image?.pngData() as NSData?
+        coupon.image = self.image?.jpegData(compressionQuality: 1.0) as NSData?
         
         do {
             try self.moc.save()
         } catch let err {
             print(" UNABLE TO SAVE UPDATES ! ERR: \(err.localizedDescription) ")
             print(coupon)
+        }
+        
+        UserNotificationsService.shared.setReminderFor(coupon: coupon) { (granted, err1, err2) in
+            print(granted)
+            if !granted {
+                print("Notifications not authorized")
+            }
+            if let authorizationError = err1 {
+                print(" AUTHORIZATION ERROR: \(authorizationError) ")
+            }
+            if let requestError = err2 {
+                print(" REQUEST ERROR: \(requestError) ")
+            }
         }
         
         self.presentation.wrappedValue.dismiss()
@@ -229,13 +253,13 @@ public struct CustomEditorStyle: ViewModifier {
             UITableViewCell.appearance().selectionStyle = .none
             UITableView.appearance().showsVerticalScrollIndicator = false
         }
-//        .onDisappear {
-//            UITableViewCell.appearance().backgroundColor = .systemBackground
-//            UITableView.appearance().separatorColor = .systemBackground
-//            UITableView.appearance().backgroundColor = .systemBackground
-//            UITableViewCell.appearance().selectionStyle = .none
-//            UITableView.appearance().showsVerticalScrollIndicator = false
-//        }
+        //        .onDisappear {
+        //            UITableViewCell.appearance().backgroundColor = .systemBackground
+        //            UITableView.appearance().separatorColor = .systemBackground
+        //            UITableView.appearance().backgroundColor = .systemBackground
+        //            UITableViewCell.appearance().selectionStyle = .none
+        //            UITableView.appearance().showsVerticalScrollIndicator = false
+        //        }
     }
 }
 

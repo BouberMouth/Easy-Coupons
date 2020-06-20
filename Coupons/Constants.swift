@@ -16,4 +16,16 @@ struct UserDefaultsKeys {
     static let notificationTimePreferenceHKey = "notificationTimePreferenceH"
     static let notificationTimePreferenceMKey = "notificationTimePreferenceM"
     static let notificationTimePreferenceKey = "notificationTimePreference"
+    static let tintPreferenceKey = "tintPreference"
+    
+    static func setup() {
+        let app = UserDefaults.standard
+        
+        if app.object(forKey: currencyPreferenceKey) == nil {
+            app.set(Currency.eur.rawValue, forKey: currencyPreferenceKey)
+        }
+        if app.object(forKey: tintPreferenceKey) == nil {
+            app.set(TintColor.blue.rawValue, forKey: tintPreferenceKey)
+        }
+    }
 }

@@ -21,6 +21,9 @@
 		7124E74F243F18B4006D6D2C /* CouponsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7124E74E243F18B4006D6D2C /* CouponsView.swift */; };
 		7124E751243F18E4006D6D2C /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7124E750243F18E4006D6D2C /* CouponCell.swift */; };
 		7124E753243F1911006D6D2C /* CouponCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7124E752243F1911006D6D2C /* CouponCreatorView.swift */; };
+		713FB53F24655F8700C2C94E /* ImagePlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FB53E24655F8700C2C94E /* ImagePlaceholderView.swift */; };
+		713FB541246574C300C2C94E /* TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FB540246574C300C2C94E /* TintColor.swift */; };
+		713FB5432469697B00C2C94E /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713FB5422469697B00C2C94E /* Localizable.swift */; };
 		7179B53E244355760097C375 /* CouponDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7179B53D244355760097C375 /* CouponDetails.swift */; };
 		7179B5402445BC4B0097C375 /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7179B53F2445BC4B0097C375 /* KeyboardResponder.swift */; };
 		7179B544244744450097C375 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7179B543244744450097C375 /* ImagePicker.swift */; };
@@ -32,6 +35,8 @@
 		71F0341724503A63009F686D /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0341624503A63009F686D /* SettingsModel.swift */; };
 		71F0341924503B25009F686D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0341824503B25009F686D /* Currency.swift */; };
 		71F0341B2450475C009F686D /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F0341A2450475C009F686D /* MessageView.swift */; };
+		71F81963247D020800D1229C /* Localizable.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71F81965247D020800D1229C /* Localizable.plist */; };
+		71F81969247E707100D1229C /* DateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71F81968247E707100D1229C /* DateLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +51,7 @@
 
 /* Begin PBXFileReference section */
 		7121006F244EEFFE002AD31F /* UserNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsService.swift; sourceTree = "<group>"; };
-		7124E722243DD42A006D6D2C /* Coupons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coupons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7124E722243DD42A006D6D2C /* Easy Coupons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Easy Coupons.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7124E725243DD42A006D6D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7124E727243DD42A006D6D2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		7124E72A243DD42A006D6D2C /* Coupons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Coupons.xcdatamodel; sourceTree = "<group>"; };
@@ -63,6 +68,10 @@
 		7124E74E243F18B4006D6D2C /* CouponsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponsView.swift; sourceTree = "<group>"; };
 		7124E750243F18E4006D6D2C /* CouponCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCell.swift; sourceTree = "<group>"; };
 		7124E752243F1911006D6D2C /* CouponCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponCreatorView.swift; sourceTree = "<group>"; };
+		713FB53E24655F8700C2C94E /* ImagePlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlaceholderView.swift; sourceTree = "<group>"; };
+		713FB540246574C300C2C94E /* TintColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TintColor.swift; sourceTree = "<group>"; };
+		713FB5422469697B00C2C94E /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		713FB544246D768900C2C94E /* Coupons.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Coupons.entitlements; sourceTree = "<group>"; };
 		7179B53D244355760097C375 /* CouponDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouponDetails.swift; sourceTree = "<group>"; };
 		7179B53F2445BC4B0097C375 /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		7179B543244744450097C375 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -74,6 +83,10 @@
 		71F0341624503A63009F686D /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		71F0341824503B25009F686D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		71F0341A2450475C009F686D /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		71F81964247D020800D1229C /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Localizable.plist; sourceTree = "<group>"; };
+		71F81966247D020D00D1229C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Localizable.plist; sourceTree = "<group>"; };
+		71F81967247D022E00D1229C /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = fr; path = fr.lproj/Localizable.plist; sourceTree = "<group>"; };
+		71F81968247E707100D1229C /* DateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +119,7 @@
 		7124E723243DD42A006D6D2C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7124E722243DD42A006D6D2C /* Coupons.app */,
+				7124E722243DD42A006D6D2C /* Easy Coupons.app */,
 				7124E73B243DD436006D6D2C /* CouponsTests.xctest */,
 			);
 			name = Products;
@@ -115,6 +128,7 @@
 		7124E724243DD42A006D6D2C /* Coupons */ = {
 			isa = PBXGroup;
 			children = (
+				713FB544246D768900C2C94E /* Coupons.entitlements */,
 				7124E725243DD42A006D6D2C /* AppDelegate.swift */,
 				7124E727243DD42A006D6D2C /* SceneDelegate.swift */,
 				7124E74C243DFA54006D6D2C /* Constants.swift */,
@@ -127,8 +141,8 @@
 				7124E72E243DD435006D6D2C /* Assets.xcassets */,
 				7124E733243DD435006D6D2C /* LaunchScreen.storyboard */,
 				7124E736243DD435006D6D2C /* Info.plist */,
-				7124E729243DD42A006D6D2C /* Coupons.xcdatamodeld */,
 				7124E730243DD435006D6D2C /* Preview Content */,
+				71F81965247D020800D1229C /* Localizable.plist */,
 			);
 			path = Coupons;
 			sourceTree = "<group>";
@@ -174,6 +188,7 @@
 		71B668AC244F308D0010C9EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7124E729243DD42A006D6D2C /* Coupons.xcdatamodeld */,
 				7124E74A243DF944006D6D2C /* Coupon.swift */,
 			);
 			path = Model;
@@ -182,9 +197,12 @@
 		71B668AD244F30A70010C9EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				713FB5422469697B00C2C94E /* Localizable.swift */,
 				7121006F244EEFFE002AD31F /* UserNotificationsService.swift */,
 				7179B543244744450097C375 /* ImagePicker.swift */,
 				71B668AE244F30DC0010C9EC /* Extensions.swift */,
+				713FB53E24655F8700C2C94E /* ImagePlaceholderView.swift */,
+				71F81968247E707100D1229C /* DateLabel.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -193,9 +211,10 @@
 			isa = PBXGroup;
 			children = (
 				71B668B2244F31450010C9EC /* SetingsView.swift */,
-				71F0341A2450475C009F686D /* MessageView.swift */,
 				71F0341624503A63009F686D /* SettingsModel.swift */,
+				71F0341A2450475C009F686D /* MessageView.swift */,
 				71F0341824503B25009F686D /* Currency.swift */,
+				713FB540246574C300C2C94E /* TintColor.swift */,
 				71F034142450395F009F686D /* Languages.swift */,
 			);
 			path = Settings;
@@ -218,7 +237,7 @@
 			);
 			name = Coupons;
 			productName = Coupons;
-			productReference = 7124E722243DD42A006D6D2C /* Coupons.app */;
+			productReference = 7124E722243DD42A006D6D2C /* Easy Coupons.app */;
 			productType = "com.apple.product-type.application";
 		};
 		7124E73A243DD436006D6D2C /* CouponsTests */ = {
@@ -265,6 +284,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 7124E719243DD42A006D6D2C;
 			productRefGroup = 7124E723243DD42A006D6D2C /* Products */;
@@ -283,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7124E735243DD435006D6D2C /* LaunchScreen.storyboard in Resources */,
+				71F81963247D020800D1229C /* Localizable.plist in Resources */,
 				7124E732243DD435006D6D2C /* Preview Assets.xcassets in Resources */,
 				7124E72F243DD435006D6D2C /* Assets.xcassets in Resources */,
 			);
@@ -317,12 +338,16 @@
 				71F0341B2450475C009F686D /* MessageView.swift in Sources */,
 				7124E728243DD42A006D6D2C /* SceneDelegate.swift in Sources */,
 				71B668AF244F30DC0010C9EC /* Extensions.swift in Sources */,
+				71F81969247E707100D1229C /* DateLabel.swift in Sources */,
 				7124E74D243DFA54006D6D2C /* Constants.swift in Sources */,
+				713FB53F24655F8700C2C94E /* ImagePlaceholderView.swift in Sources */,
 				7179B544244744450097C375 /* ImagePicker.swift in Sources */,
 				71F0341924503B25009F686D /* Currency.swift in Sources */,
 				7124E753243F1911006D6D2C /* CouponCreatorView.swift in Sources */,
 				7124E751243F18E4006D6D2C /* CouponCell.swift in Sources */,
 				71F034152450395F009F686D /* Languages.swift in Sources */,
+				713FB5432469697B00C2C94E /* Localizable.swift in Sources */,
+				713FB541246574C300C2C94E /* TintColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +378,16 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		71F81965247D020800D1229C /* Localizable.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71F81964247D020800D1229C /* Base */,
+				71F81966247D020D00D1229C /* en */,
+				71F81967247D022E00D1229C /* fr */,
+			);
+			name = Localizable.plist;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -360,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -420,6 +456,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -474,6 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Coupons/Coupons.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Coupons/Preview Content\"";
 				DEVELOPMENT_TEAM = PP39C69WNU;
@@ -484,7 +522,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.CUC.Coupons;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Easy Coupons";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -494,6 +532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Coupons/Coupons.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Coupons/Preview Content\"";
 				DEVELOPMENT_TEAM = PP39C69WNU;
@@ -504,7 +543,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.CUC.Coupons;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Easy Coupons";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -19,10 +19,9 @@ public class Coupon: NSManagedObject, Identifiable {
     @NSManaged public var offerValue: NSNumber
     @NSManaged public var offerTypeRV: NSNumber
     @NSManaged public var image: NSData?
-    @NSManaged public var imageRotation: NSNumber?
     
     var offerType: OfferType {
-        get { return OfferType.init(rawValue: Int(offerTypeRV ?? 0)) ?? .value }
+        get { return OfferType.init(rawValue: Int(truncating: offerTypeRV)) ?? .value }
         set { offerTypeRV = NSNumber(value: Int16(newValue.rawValue)) }
     }
     
@@ -31,13 +30,12 @@ public class Coupon: NSManagedObject, Identifiable {
         switch offerType {
         case .percentage:
             return "\(Int(value))%"
-            
         case .value:
+            let currency = Currency(rawValue: (UserDefaults.standard.string(forKey: UserDefaultsKeys.currencyPreferenceKey) ?? "eur")) ?? Currency.eur
             if value.remainder(dividingBy: 1.0) == 0 {
-                return "\(Int(value))€"
+                return currency.formattedPriceFor(Int(value))
             }
-            let (leftPart, rightPart) = value.priceComponants()
-            return "\(leftPart)€\(rightPart)"
+            return currency.formattedPriceFor(value)
         }
     }
 

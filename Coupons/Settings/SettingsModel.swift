@@ -6,7 +6,7 @@
 //  Copyright © 2020 BOUBERBOUCHE Antoine. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 class SettingsModel: ObservableObject {
     
@@ -26,10 +26,14 @@ class SettingsModel: ObservableObject {
     
     @Published var selectedNotificationTime: Date {
         didSet {
-//            let components = Calendar.current.dateComponents([.hour, .minute], from: selectedNotificationTime)
-//            UserDefaults.standard.set(components.hour ?? 20, forKey: UserDefaultsKeys.notificationTimePreferenceHKey)
-//            UserDefaults.standard.set(components.minute ?? 15, forKey: UserDefaultsKeys.notificationTimePreferenceMKey)
             app.set(selectedNotificationTime, forKey: UserDefaultsKeys.notificationTimePreferenceKey)
+            UserNotificationsService.shared.rescheduleNotificationsWithNewTime(date: selectedNotificationTime)
+        }
+    }
+    
+    @Published var selectedTintColor: TintColor {
+        didSet {
+            app.set(selectedTintColor.rawValue, forKey: UserDefaultsKeys.tintPreferenceKey)
         }
     }
     
@@ -52,13 +56,13 @@ class SettingsModel: ObservableObject {
             self.selectedCurrency = .eur
         }
         
-//        let notificationHour = UserDefaults.standard.integer(forKey: UserDefaultsKeys.notificationTimePreferenceHKey)
-//        let notificationMinute = UserDefaults.standard.integer(forKey: UserDefaultsKeys.notificationTimePreferenceMKey)
-//        var components = Calendar.current.dateComponents([.minute, .hour], from: Date())
-//        var comp = Calendar.current.comp
-//        components.hour = (notificationHour != 0) ? notificationHour : 20
-//        components.minute = (notificationMinute != 0) ? notificationMinute : 15
-//        selectedNotificationTime = Calendar.current.date(from: comp) ?? Date()
+        if let tintColorRV = app.string(forKey: UserDefaultsKeys.tintPreferenceKey),
+            let tintColor = TintColor(rawValue: tintColorRV) {
+            self.selectedTintColor = tintColor
+        } else {
+            self.selectedTintColor = .blue
+        }
+
         
         if let date = app.object(forKey: UserDefaultsKeys.notificationTimePreferenceKey) as? Date {
             self.selectedNotificationTime = date

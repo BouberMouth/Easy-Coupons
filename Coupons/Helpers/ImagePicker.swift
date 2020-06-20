@@ -19,7 +19,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let uiImage = info[.originalImage] as? UIImage {
+        if let uiImage = info[.editedImage] as? UIImage {
             image = uiImage
             isShown = false
         }
@@ -42,6 +42,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let picker = UIImagePickerController()
         picker.sourceType = sourceType
+        picker.allowsEditing = true
         picker.delegate = context.coordinator
         return picker
     }

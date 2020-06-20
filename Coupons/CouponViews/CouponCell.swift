@@ -13,75 +13,64 @@ struct CouponCell: View {
     @State var showImageSheet = false
     
     var coupon: Coupon
+
+    let currency = Currency(rawValue: (UserDefaults.standard.string(forKey: UserDefaultsKeys.currencyPreferenceKey) ?? "eur")) ?? .eur
     
     var expirationDateLabel: String {
         guard let date = coupon.expirationDate else {
-            return "N'expire jamais"
+            return String.localize(forKey: "COUPON.NEVER_EXP")
         }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMMM yyyy"
-        let formattedDate = dateFormatter.string(from: date)
-        return "Expire le \(formattedDate)"
+        return DateLabel().getLabel(date: date)
     }
     
     var conditionLabel : String {
         guard let minimalAmount = coupon.minimumAmount?.doubleValue else {
-            return "Sans minimum d'achat"
+            return String.localize(forKey: "COUPON.NO_MIN")
         }
+        
         if minimalAmount.remainder(dividingBy: 1.0) == 0 {
-            return "À partir de \(Int(minimalAmount))€ d'achat"
+            let price = currency.formattedPriceFor(Int(minimalAmount))
+            return String.localize(forKey: "COUPON.MIN_DESCRIPTION").replacingOccurrences(of: "%price%", with: price)
         }
-        let (leftPart, rightPart) = minimalAmount.priceComponants()
-        return "À partir de \(leftPart)€\(rightPart) d'achat"
+        let price = currency.formattedPriceFor(minimalAmount)
+        return String.localize(forKey: "COUPON.MIN_DESCRIPTION").replacingOccurrences(of: "%price%", with: price)
     }
     
     var offer: String {
-        //let value = coupon.offerValue!.doubleValue
-        let value = coupon.offerValue.doubleValue
-        switch coupon.offerType {
-        case .percentage:
-            return "\(Int(value))%"
-            
-        case .value:
-            if value.remainder(dividingBy: 1.0) == 0 {
-                return "\(Int(value))€"
-            }
-            let (leftPart, rightPart) = value.priceComponants()
-            return "\(leftPart)€\(rightPart)"
-        }
+        return coupon.offerDescription
     }
     
-    var image: Image {
+    var image: UIImage? {
         if let data = coupon.image as? Data, let uiImage = UIImage(data: data) {
-            return Image(uiImage: uiImage)
+            return uiImage
         }
-        return Image(systemName: "photo")
+        return nil
     }
     
     var body: some View {
         HStack(alignment: .center) {
-            image
+            if image != nil {
+                Image(uiImage: image!)
                 .resizable()
                 .foregroundColor(Color(UIColor.systemFill))
-                .cornerRadius(4)
-                .frame(minWidth: 50, maxWidth: 50, minHeight: 50, maxHeight: 50, alignment: .center)
+                .cornerRadius(8)
+                .frame(minWidth: 50, maxWidth: 60, minHeight: 50, maxHeight: 60, alignment: .center)
                 .aspectRatio(contentMode: .fit)
-                .rotationEffect(.degrees(coupon.imageRotation?.doubleValue ?? 0))
                 .padding(8)
                 .onTapGesture {
                     self.showImageSheet = true
+                }
+            } else {
+                ImagePlaceholderView(cornerRadius: 8, imageFontSize: 20)
+                .frame(minWidth: 50, maxWidth: 60, minHeight: 50, maxHeight: 60, alignment: .center)
+                .padding(8)
             }
-            /*.sheet(isPresented: $showImageSheet) {
-                Image(uiImage: UIImage(data: self.coupon.image as! Data)!)
-                    .resizable()
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
-                    .aspectRatio(nil, contentMode: .fit)
-            }*/
+
 
             VStack(alignment: .leading) {
                 Text(coupon.brand)
                     .font(.system(.headline, design: .rounded))
-                    .foregroundColor(Color(UIColor.systemPink))
+                    .foregroundColor(Color(TintColor.userPreference))
                 Text(expirationDateLabel)
                     .font(.system(.subheadline, design: .rounded))
                     .foregroundColor(Color(UIColor.secondaryLabel))
@@ -89,7 +78,7 @@ struct CouponCell: View {
                     .font(.system(.subheadline, design: .rounded))
                 .foregroundColor(Color(UIColor.label))
             }
-            .padding(8)
+            .padding(.vertical, 8)
             
             Spacer()
             

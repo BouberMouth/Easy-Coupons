@@ -15,17 +15,10 @@ struct CouponDetails: View {
     var coupon: Coupon
     @State var showEditionView: Bool = false
     
+    let currency = Currency(rawValue: (UserDefaults.standard.string(forKey: UserDefaultsKeys.currencyPreferenceKey) ?? "eur")) ?? .eur
+    
     var value: String {
-        switch coupon.offerType {
-        case .percentage:
-            return "\(Int(coupon.offerValue))%"
-        case .value:
-            let (eur, cents) = Double(coupon.offerValue).priceComponants()
-            if cents == "00" {
-                return "\(eur)€"
-            }
-            return "\(eur)€\(cents)"
-        }
+        return coupon.offerDescription
     }
     
     var navBarTitle: String {
@@ -40,27 +33,31 @@ struct CouponDetails: View {
     }
     
     var minimumAmountText: Text? {
-        if let (eur, cents) = coupon.minimumAmount?.doubleValue.priceComponants() {
-            return Text(eur + "€" + cents)
+        guard let minimalAmount = coupon.minimumAmount?.doubleValue else {
+            return Text("-")
         }
-        return Text("-")
+        
+        if minimalAmount.remainder(dividingBy: 1.0) == 0 {
+            return Text("\(currency.formattedPriceFor(Int(minimalAmount)))")
+        }
+        return Text("\(currency.formattedPriceFor(minimalAmount))")
     }
     
     var dateText: Text? {
         if let date = coupon.expirationDate {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "d MMMM yyyy"
+            dateFormatter.dateFormat = String.localize(forKey: "FORMAT.EXP_DATE")
             let formattedDate = dateFormatter.string(from: date)
             return Text(formattedDate)
         }
         return Text("-")
     }
     
-    var image: Image {
-        if let data = coupon.image as? Data, let uiImage = UIImage(data: data)//?.rotate(radians: .pi/2) {
-            return Image(uiImage: uiImage)
+    var image: UIImage? {
+        if let data = coupon.image as? Data, let uiImage = UIImage(data: data) {
+            return uiImage
         }
-        return Image("Logo2")
+        return nil
     }
     
     var couponImage: UIImage? {
@@ -72,21 +69,21 @@ struct CouponDetails: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            image
-                .resizable()
-                
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .aspectRatio(contentMode: .fit)
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.orange, lineWidth: 4))
-                .padding(20)
-//
-//
-//
-//                .padding(.bottom, 20)
+            if image != nil {
+                Image(uiImage: image!)
+                    .resizable()
+                    .frame(width: UIWindow().frame.width * 0.9, height: UIWindow().frame.width * 0.9, alignment: .center)
+                    .aspectRatio(contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.vertical, 20)
+            } else {
+                ImagePlaceholderView(cornerRadius: 10, imageFontSize: 100)
+                    .frame(width: UIWindow().frame.width * 0.9, height: UIWindow().frame.width * 0.9, alignment: .center)
+            }
+
                 
             HStack {
-                Text("Brand")
+                Text(String.localize(forKey: "COUPON.BRAND"))
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color(UIColor.label))
                 Spacer()
@@ -96,7 +93,7 @@ struct CouponDetails: View {
             }
             
             HStack {
-                Text("Location")
+                Text(String.localize(forKey: "COUPON.LOCATION"))
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color(UIColor.label))
                 Spacer()
@@ -106,7 +103,7 @@ struct CouponDetails: View {
             }
             
             HStack {
-                Text("Value")
+                Text(String.localize(forKey: "COUPON.VALUE"))
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color(UIColor.label))
                 Spacer()
@@ -116,7 +113,7 @@ struct CouponDetails: View {
             }
             
             HStack {
-                Text("Minimum amount")
+                Text(String.localize(forKey: "COUPON.MIN_AMOUNT"))
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color(UIColor.label))
                 Spacer()
@@ -126,7 +123,7 @@ struct CouponDetails: View {
             }
             
             HStack {
-                Text("Expiration")
+                Text(String.localize(forKey: "COUPON.EXPIRATION"))
                     .font(.system(.headline, design: .rounded))
                     .foregroundColor(Color(UIColor.label))
                 Spacer()
@@ -137,7 +134,7 @@ struct CouponDetails: View {
         }
         .padding(.horizontal, 20)
         .navigationBarTitle(navBarTitle)
-        .navigationBarItems(trailing: Button("Edit") {
+        .navigationBarItems(trailing: Button(String.localize(forKey: "DEFAULT.EDIT")) {
             self.showEditionView = true
         }.sheet(isPresented: $showEditionView) {
 

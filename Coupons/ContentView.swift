@@ -15,15 +15,15 @@ struct ContentView: View {
             CouponsView()
                 .tabItem {
                     Image(systemName: "rectangle.stack.fill")
-                    Text("Coupons")
+                    Text(String.localize(forKey: "TAB_BAR_TITLE.COUPONS"))
             }
             
             SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
-                    Text("Settings")
+                    Text(String.localize(forKey: "TAB_BAR_TITLE.SETTINGS"))
             }
-        }.accentColor(Color(UIColor.systemPink))
+        }.accentColor(Color(TintColor.userPreference))
     }
 }
 

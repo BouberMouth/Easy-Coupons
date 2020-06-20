@@ -36,23 +36,25 @@ struct CouponsView: View {
                 
                 
                 Button(action: {
+                    UserNotificationsService.shared.requestAuthorization()
                     self.showCreator = true
                 }, label: {
-                    Text("New Coupon")
+                    Text(String.localize(forKey: "COUPON.CREATE_BUTTON_TITLE"))
                         .font(.system(.subheadline, design: .rounded))
                         .foregroundColor(Color(UIColor.white))
                 })
                     .frame(maxWidth: .infinity)
                     .padding(15)
-                    .background(Color(UIColor.systemPink))
+                    .background(Color(TintColor.userPreference))
                     .cornerRadius(10)
                     .sheet(isPresented: $showCreator) {
                         CouponCreatorView().environment(\.managedObjectContext, self.moc)
                 }
             }
-            .padding(.top)
+            .padding(.top, 1)
+            .padding(.bottom)
             .background(Color(UIColor.systemBackground))
-            .navigationBarTitle("Coupons")
+            .navigationBarTitle(String.localize(forKey: "TAB_BAR_TITLE.COUPONS"))
         }.onAppear {
             UITableViewCell.appearance().backgroundColor = .systemBackground
             UITableView.appearance().backgroundColor = .systemBackground
@@ -61,7 +63,5 @@ struct CouponsView: View {
             UITableViewCell.appearance().accessoryType = .none
             UITableView.appearance().showsVerticalScrollIndicator = false
         }
-        
-        
     }
 }
